@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.app.simplesum.MainViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        tools:context=".MainActivity">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSumResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Hello World!"
+            android:inputType="number"
+            android:textSize="34sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/edtFirstNum"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edtFirstNum"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:hint="Enter first num"
+            android:inputType="number"
+            android:paddingStart="10dp"
+            android:background="@drawable/bg_edit"
+            android:text="@={viewModel.firstNumber}"
+            android:imeOptions="actionNext"
+            android:layout_marginTop="30dp"
+            app:layout_constraintVertical_bias="0.35"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/edtSecondNum"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edtSecondNum"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:hint="Enter second num"
+            android:paddingStart="10dp"
+            android:background="@drawable/bg_edit"
+            android:layout_marginTop="15dp"
+            android:inputType="number"
+            android:text="@={viewModel.secondNumber}"
+            tools:text="8"
+            android:imeOptions="actionDone"
+            app:layout_constraintTop_toBottomOf="@id/edtFirstNum"
+            app:layout_constraintBottom_toTopOf="@id/btnCalculate"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCalculate"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:text="Calculate"
+            android:textSize="18sp"
+            android:layout_marginTop="20dp"
+            android:enabled='@{viewModel.isCalculateEnabled}'
+            android:onClick='@{() -> viewModel.onCalculateClick()}'
+            app:layout_constraintTop_toBottomOf="@id/edtSecondNum"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_percent="0.05"
+            android:orientation="vertical" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_percent="0.95"
+            android:orientation="vertical" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
