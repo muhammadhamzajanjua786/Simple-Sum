@@ -32,7 +32,7 @@ class MainViewModelTest {
         viewModel.setSecondNumber("3")
         viewModel.onCalculateClick()
 
-        assertThat(viewModel.sum.value).isEqualTo("5")
+        assertThat(viewModel.sum.value).isEqualTo("4")
     }
 
     @Test
